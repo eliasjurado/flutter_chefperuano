@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cheffperuano/widgets/strings.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:cheffperuano/pagina/pagConfiguracion.dart';
 import 'package:cheffperuano/pagina/pagFavorito.dart';
 import 'package:cheffperuano/pagina/pagInicio.dart';
 import 'package:cheffperuano/pagina/pagPerfil.dart';
@@ -16,7 +16,7 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _page = 0;
+  
   GlobalKey _bottomNavigationKey = GlobalKey();
   
   //creacion de paginas
@@ -25,15 +25,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final PagFavorito _favorito = PagFavorito();
   final PagTip _tip = PagTip();
   final PagPerfil _perfil = PagPerfil();
-  final PagConfiguracion _configuracion = PagConfiguracion();
-
 
   Widget _pageIndex = new PagInicio();
 
   Widget _pageChooser(int page){
     switch (page) {
       case 0:
-        return _inicio;
+        return null;
         break;
       case 1:
         return _receta;
@@ -47,15 +45,54 @@ class _BottomNavBarState extends State<BottomNavBar> {
       case 4:
         return _perfil;
         break;
-      default: _inicio;
     }
+    return _pageChooser(page);
   }
+
+  Icon icoSearch = Icon(Icons.search);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: CurvedNavigationBar(
+        appBar: AppBar(
+          title: lblTituloApp,
+          bottom: PreferredSize(
+            preferredSize: Size(10,-10),
+            child: Container(),
+            
+          ),
+          backgroundColor: Color(0xFFFF6B6B),
+          actions: <Widget>[
+            IconButton(
+              onPressed: (){
+                setState(() {
+                  if (icoSearch.icon == Icons.search) {
+                    icoSearch = Icon(Icons.cancel);
+                    lblTituloApp = TextField(
+                      textInputAction: TextInputAction.go,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: '¿Qué cocinaré hoy?',
+                         hintStyle: TextStyle(fontSize: 15.0, color: Colors.white.withOpacity(0.5)),
+                      ),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0,
+                      ),
 
+                    );
+                
+                  } else {
+                    icoSearch = Icon(Icons.search);
+                    lblTituloApp = Text('Chef Peruano Daewoo',style: TextStyle(fontSize: 16, ),);
+                  }
+                });
+              },
+              icon: icoSearch,
+            ),
+          ],
+        ),
+        bottomNavigationBar: CurvedNavigationBar(
           key: _bottomNavigationKey,
           index: 0,
           height: 50.0,
@@ -80,6 +117,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ),
         body: Container(
           decoration: new BoxDecoration(
+            color: Colors.blue,
             gradient: new LinearGradient(
               colors: [
                 //0xFF
