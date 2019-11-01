@@ -192,7 +192,7 @@ class _MovieScreenState extends State<PagReceta> {
           ContentScroll(
             images: widget.movie.recetasSugeridas,
             title: 'Recetas Sugeridas',
-            imageHeight: 200.0,
+            imageHeight: 250.0,
             imageWidth: 250.0,
           ),
         ],

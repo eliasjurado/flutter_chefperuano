@@ -96,4 +96,34 @@ final List<Movie> movies = [
   ),
 ];
 
+final List<String> sopa = [
+  'assets/images/calgogallina.jpg',
+  'assets/images/menestron.jpg',
+  'assets/images/parihuela.jpg',
+  'assets/images/sopadetrigo.jpg',
+  'assets/images/sopamote.jpg',
+  'assets/images/sopaolluco.jpg',
+];
+
+final List<String> almuerzo = [
+  'assets/images/secofrejoles.jpg',
+  'assets/images/ajigallina.jpg',
+  'assets/images/pure.jpg',
+  'assets/images/arrozpollo.jpg',
+  'assets/images/chaufa.jpg',
+];
+
+final List<String> postres = [
+  'assets/images/paimanzana.jpg',
+  'assets/images/tortachocolate.jpg',
+  'assets/images/tortahelada.jpg',
+  'assets/images/tortalucuma.jpg',
+  'assets/images/tortamelocoton.jpg',
+  'assets/images/tortafresa.jpg',
+];
+
+
+
+
+
 

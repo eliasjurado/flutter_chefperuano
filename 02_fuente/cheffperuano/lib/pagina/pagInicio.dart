@@ -25,7 +25,7 @@ class PagInicio extends StatefulWidget {
         double value = 1;
         if (_pageController.position.haveDimensions) {
           value = _pageController.page - index;
-          value = (1 - (value.abs() * 0.3) + 0.06).clamp(0.0, 1.0);
+          value = (1 - (value.abs() * 0.3) + 0.04).clamp(0.0, 1.0);
         }
         return Center(
           child: SizedBox(
@@ -106,20 +106,20 @@ class PagInicio extends StatefulWidget {
   Widget build(BuildContext context) {
   return Scaffold(  
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   elevation: 0.0,
         
-        actions: <Widget>[
-          IconButton(
-            padding: EdgeInsets.only(right: 30.0),
-            onPressed: () => print('Search'),
-            icon: Icon(Icons.search),
-            iconSize: 30.0,
-            color: Colors.black,
-          ),
-        ],
-      ),
+      //   actions: <Widget>[
+      //     IconButton(
+      //       padding: EdgeInsets.only(right: 30.0),
+      //       onPressed: () => print('Search'),
+      //       icon: Icon(Icons.search),
+      //       iconSize: 30.0,
+      //       color: Colors.black,
+      //     ),
+      //   ],
+      // ),
 
 
 
@@ -137,7 +137,30 @@ class PagInicio extends StatefulWidget {
               },
             ),
           ),
-          
+
+          SizedBox(height: 20.0),
+          ContentScroll(
+            images: sopa,
+            title: 'Sopas',
+            imageHeight: 150.0,
+            imageWidth: 100.0,
+          ),
+
+          SizedBox(height: 20.0),
+          ContentScroll(
+            images: almuerzo,
+            title: 'Platos de fondo',
+            imageHeight: 150.0,
+            imageWidth: 100.0,
+          ),
+
+          SizedBox(height: 20.0),
+          ContentScroll(
+            images: postres,
+            title: 'Postres',
+            imageHeight: 150.0,
+            imageWidth: 100.0,
+          ),
         ],
       ),
     );
