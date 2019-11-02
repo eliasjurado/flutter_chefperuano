@@ -43,7 +43,7 @@ class ContentScroll extends StatelessWidget {
         Container(
           height: imageHeight,
           child: ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
             scrollDirection: Axis.horizontal,
             itemCount: images.length,
             itemBuilder: (BuildContext context, int index) {

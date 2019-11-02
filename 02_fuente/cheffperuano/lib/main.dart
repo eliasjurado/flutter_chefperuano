@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cheffperuano/widgets/strings.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:cheffperuano/pagina/pagConfiguracion.dart';
 import 'package:cheffperuano/pagina/pagFavorito.dart';
 import 'package:cheffperuano/pagina/pagInicio.dart';
 import 'package:cheffperuano/pagina/pagPerfil.dart';
@@ -16,7 +16,7 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _page = 0;
+  
   GlobalKey _bottomNavigationKey = GlobalKey();
   
   //creacion de paginas
@@ -25,8 +25,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final PagFavorito _favorito = PagFavorito();
   final PagTip _tip = PagTip();
   final PagPerfil _perfil = PagPerfil();
-  final PagConfiguracion _configuracion = PagConfiguracion();
-
 
   Widget _pageIndex = new PagInicio();
 
@@ -47,52 +45,81 @@ class _BottomNavBarState extends State<BottomNavBar> {
       case 4:
         return _perfil;
         break;
-      default: _inicio;
     }
+    return _pageChooser(page);
   }
+
+  Icon icoSearch = Icon(Icons.search);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: CurvedNavigationBar(
-
-          key: _bottomNavigationKey,
-          index: 0,
-          height: 50.0,
-          items: <Widget>[
-            Icon(Icons.search, size: 30),
-            Icon(Icons.import_contacts, size: 30),
-            Icon(Icons.favorite_border, size: 30),
-            Icon(Icons.lightbulb_outline, size: 30),
-            Icon(Icons.perm_identity, size: 30),
-          ],
-          color: Colors.white,
-          buttonBackgroundColor: Colors.white,
-          backgroundColor:  Color(0xFFFF6B6B),
-          animationCurve: Curves.easeInOut,
-          animationDuration: Duration(milliseconds: 250),
-          onTap: (int tappedIndex) {
-            setState(() {
-                //qué página voy a mostrar
-              _pageIndex = _pageChooser(tappedIndex);
-            });
-          },
+      appBar: AppBar(
+        title: lblTituloApp,
+        bottom: PreferredSize(
+          preferredSize: Size(10,-10),
+          child: Container(),
+          
         ),
-        body: Container(
-          decoration: new BoxDecoration(
-            gradient: new LinearGradient(
-              colors: [
-                //0xFF
-                Color(0xFF556270),
-                Color(0xFFFF6B6B),
-              ],
-              begin: const FractionalOffset(1.0, .0),
-              end: const FractionalOffset(0.9, 1.0)
-            ),
+        backgroundColor: Color(0xFFE37103),
+        actions: <Widget>[
+          IconButton(
+            onPressed: (){
+              setState(() {
+                if (icoSearch.icon == Icons.search) {
+                  icoSearch = Icon(Icons.cancel);
+                  lblTituloApp = TextField(
+                    textInputAction: TextInputAction.search,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: '¿Qué cocinaré hoy?',
+                        hintStyle: TextStyle(fontSize: 15.0, color: Colors.white.withOpacity(0.5)),
+                    ),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15.0,
+                    ),
+
+                  );
+              
+                } else {
+                  icoSearch = Icon(Icons.search);
+                  lblTituloApp = Text('Chef Peruano Daewoo',style: TextStyle(fontSize: 16, ),);
+                }
+              });
+            },
+            icon: icoSearch,
           ),
-          child: Center(
-            child: _pageIndex,
-          ),
-        ));
+        ],
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        key: _bottomNavigationKey,
+        index: 0,
+        height: 50.0,
+        items: <Widget>[
+          Icon(Icons.search, size: 30,color: Colors.white,),
+          Icon(Icons.import_contacts, size: 30,color: Colors.white,),
+          Icon(Icons.favorite_border, size: 30,color: Colors.white,),
+          Icon(Icons.lightbulb_outline, size: 30,color: Colors.white,),
+          Icon(Icons.perm_identity, size: 30,color: Colors.white,),
+        ],
+        color: Color(0xFFE37103),
+        buttonBackgroundColor: Color(0xFFE37103),
+        backgroundColor: Colors.white,
+        animationCurve: Curves.easeInOut,
+        animationDuration: Duration(milliseconds: 250),
+        onTap: (int tappedIndex) {
+          setState(() {
+              //qué página voy a mostrar
+            _pageIndex = _pageChooser(tappedIndex);
+          });
+        },
+      ),
+      body: Container(
+        child: Center(
+          child: _pageIndex,
+        ),
+      )
+    );
   }
 }

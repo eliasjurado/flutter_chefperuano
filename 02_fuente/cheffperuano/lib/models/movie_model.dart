@@ -94,6 +94,56 @@ final List<Movie> movies = [
       'assets/images/enrrollados.jpg',
     ],
   ),
+  Movie(
+    imageUrl: 'assets/images/papahuanca.jpg',
+    titulo: 'Papa a la huancaina',
+    ingredientes: 'Papa, Pollo, Cebolla, Mayonesa',
+    platos  : 5,
+    
+    tiempo: 45,
+    descripcion:
+        'La papa a la huancaina es escencial en los platos',
+    hornos: [
+      'assets/images/horno1.jpg',
+      'assets/images/horno2.jpg',
+      'assets/images/horno3.jpg',
+      'assets/images/horno4.jpg',
+      'assets/images/horno5.jpg',
+    ],
+    recetasSugeridas: [
+      'assets/images/causaSe.jpg',
+      'assets/images/enrrollados.jpg',
+      'assets/images/ceviche.jpg',
+      'assets/images/causaS.jpg',
+    ],
+
+
+  ),
+  Movie(
+    imageUrl: 'assets/images/paltaM.jpg',
+    titulo: 'Palta rellan',
+    ingredientes: 'Palta, cebolla, atun',
+    platos  : 5,
+    
+    tiempo: 45,
+    descripcion:
+        'La palta rellena es un plato tipico',
+    hornos: [
+      'assets/images/horno1.jpg',
+      'assets/images/horno2.jpg',
+      'assets/images/horno3.jpg',
+      'assets/images/horno4.jpg',
+      'assets/images/horno5.jpg',
+    ],
+    recetasSugeridas: [
+      'assets/images/causaSe.jpg',
+      'assets/images/enrrollados.jpg',
+      'assets/images/ceviche.jpg',
+      'assets/images/causaS.jpg',
+    ],
+
+
+  ),
 ];
 
 final List<String> sopa = [

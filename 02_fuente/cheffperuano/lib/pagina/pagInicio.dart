@@ -127,7 +127,7 @@ class PagInicio extends StatefulWidget {
       body: ListView(
         children: <Widget>[
           Container(
-            height: 280.0,
+            height: 250.0,
             width: double.infinity,
             child: PageView.builder(
               controller: _pageController,
