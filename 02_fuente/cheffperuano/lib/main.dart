@@ -34,7 +34,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         return _inicio;
         break;
       case 1:
-        return _receta;
+        return _inicio;
         break;
       case 2:
         return _favorito;
