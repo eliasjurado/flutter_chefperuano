@@ -1,3 +1,4 @@
+import 'package:cheffperuano/pagina/pagLogin.dart';
 import 'package:flutter/material.dart';
 import 'package:cheffperuano/widgets/strings.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -20,13 +21,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
   GlobalKey _bottomNavigationKey = GlobalKey();
   
   //creacion de paginas
+  final PagLogin _login=PagLogin();
   final PagInicio _inicio = PagInicio();
   final PagReceta _receta = PagReceta();
   final PagFavorito _favorito = PagFavorito();
   final PagTip _tip = PagTip();
   final PagPerfil _perfil = PagPerfil();
 
-  Widget _pageIndex = new PagInicio();
+  Widget _pageIndex = new PagLogin();
 
   Widget _pageChooser(int page){
     switch (page) {
