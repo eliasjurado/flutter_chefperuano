@@ -1,125 +1,93 @@
+import 'package:cheffperuano/pagina/pagMenu.dart';
 import 'package:flutter/material.dart';
-import 'package:cheffperuano/widgets/strings.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:cheffperuano/pagina/pagFavorito.dart';
-import 'package:cheffperuano/pagina/pagInicio.dart';
-import 'package:cheffperuano/pagina/pagPerfil.dart';
-import 'package:cheffperuano/pagina/pagReceta.dart';
-import 'package:cheffperuano/pagina/pagTip.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
+void main() => runApp(MaterialApp(home: PagLogin()));
 
-void main() => runApp(MaterialApp(home: BottomNavBar()));
-
-class BottomNavBar extends StatefulWidget {
+class PagLogin extends StatefulWidget {
   @override
-  _BottomNavBarState createState() => _BottomNavBarState();
-}
+  _PagLoginState createState() => new _PagLoginState();
+ }
 
-class _BottomNavBarState extends State<BottomNavBar> {
-  
-  GlobalKey _bottomNavigationKey = GlobalKey();
-  
-  //creacion de paginas
-  final PagInicio _inicio = PagInicio();
-  final PagReceta _receta = PagReceta();
-  final PagFavorito _favorito = PagFavorito();
-  final PagTip _tip = PagTip();
-  final PagPerfil _perfil = PagPerfil();
-
-  Widget _pageIndex = new PagInicio();
-
-  Widget _pageChooser(int page){
-    switch (page) {
-      case 0:
-        return _inicio;
-        break;
-      case 1:
-        return _inicio;
-        break;
-      case 2:
-        return _favorito;
-        break;
-      case 3:
-        return _tip;
-        break;  
-      case 4:
-        return _perfil;
-        break;
-    }
-    return _pageChooser(page);
-  }
-
-  Icon icoSearch = Icon(Icons.search);
-
+ class _PagLoginState extends State<PagLogin> {
+  /// Normally the signin buttons should be contained in the SignInPage
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: lblTituloApp,
-        bottom: PreferredSize(
-          preferredSize: Size(10,-10),
-          child: Container(),
-          
-        ),
-        backgroundColor: Color(0xFFE37103),
-        actions: <Widget>[
-          IconButton(
-            onPressed: (){
-              setState(() {
-                if (icoSearch.icon == Icons.search) {
-                  icoSearch = Icon(Icons.cancel);
-                  lblTituloApp = TextField(
-                    textInputAction: TextInputAction.search,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: '¿Qué cocinaré hoy?',
-                        hintStyle: TextStyle(fontSize: 15.0, color: Colors.white.withOpacity(0.5)),
-                    ),
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15.0,
-                    ),
-
-                  );
-              
-                } else {
-                  icoSearch = Icon(Icons.search);
-                  lblTituloApp = Text('Chef Peruano Daewoo',style: TextStyle(fontSize: 16, ),);
-                }
-              });
-            },
-            icon: icoSearch,
-          ),
-        ],
-      ),
-      bottomNavigationBar: CurvedNavigationBar(
-        key: _bottomNavigationKey,
-        index: 0,
-        height: 50.0,
-        items: <Widget>[
-          Icon(Icons.search, size: 30,color: Colors.white,),
-          Icon(Icons.import_contacts, size: 30,color: Colors.white,),
-          Icon(Icons.favorite_border, size: 30,color: Colors.white,),
-          Icon(Icons.lightbulb_outline, size: 30,color: Colors.white,),
-          Icon(Icons.perm_identity, size: 30,color: Colors.white,),
-        ],
-        color: Color(0xFFE37103),
-        buttonBackgroundColor: Color(0xFFE37103),
-        backgroundColor: Colors.white,
-        animationCurve: Curves.easeInOut,
-        animationDuration: Duration(milliseconds: 250),
-        onTap: (int tappedIndex) {
-          setState(() {
-              //qué página voy a mostrar
-            _pageIndex = _pageChooser(tappedIndex);
-          });
-        },
-      ),
+      //backgroundColor: Color.fromRGBO(50, 50, 50, 1.0),
       body: Container(
-        child: Center(
-          child: _pageIndex,
+              decoration: new BoxDecoration(image: new DecorationImage(
+                image: AssetImage('assets/images/login.jpg'),fit: BoxFit.cover )
+              ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            
+            /*SignInButtonBuilder(
+              text: 'Get going with Email',
+              icon: Icons.email,
+              onPressed: () {},
+              backgroundColor: Colors.blueGrey[700],
+              width: 200.0,
+            ),*/
+            Divider(),
+            SignInButton(
+              Buttons.Google,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBar()),);
+              },
+            ),
+            SignInButton(
+              Buttons.Facebook,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBar()),);
+              },
+            ),
+            /*SignInButton(
+              Buttons.GitHub,
+              onPressed: () {},
+            ),
+            SignInButton(
+              Buttons.Pinterest,
+              text: "Sign up with Pinterest",
+              onPressed: () {},
+            ),
+            SignInButton(
+              Buttons.Twitter,
+              text: "Use Twitter",
+              onPressed: () {},
+            ),*/
+            /*Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SignInButton(
+                  Buttons.LinkedIn,
+                  mini: true,
+                  onPressed: () {},
+                ),
+                SignInButton(
+                  Buttons.Tumblr,
+                  mini: true,
+                  onPressed: () {},
+                ),
+                SignInButton(
+                  Buttons.Facebook,
+                  mini: true,
+                  onPressed: () {},
+                ),
+                SignInButtonBuilder(
+                  icon: Icons.email,
+                  text: "Ignored for mini button",
+                  mini: true,
+                  onPressed: () {},
+                  backgroundColor: Colors.cyan,
+                ),
+              ],
+            ),*/
+          ],
         ),
-      )
+      ),
     );
   }
 }
